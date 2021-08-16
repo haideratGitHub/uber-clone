@@ -2,6 +2,8 @@ import React from "react";
 import { Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import tw from "tailwind-react-native-classnames";
 import NavOptions from "../components/NavOptions";
+import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
+import { GOOGLE_MAPS_APIKEY } from "@env";
 
 const HomeScreen = () => {
 	return (
@@ -18,6 +20,27 @@ const HomeScreen = () => {
 					}}
 				/>
 			</View>
+			<GooglePlacesAutocomplete
+				styles={{
+					container: {
+						flex: 0,
+					},
+					textInput: {
+						fontSize: 18,
+					},
+				}}
+				onPress={(data, details = null) => {}}
+				fetchDetails={true}
+				enablePoweredByContainer={false}
+				minLength={2}
+				query={{
+					key: GOOGLE_MAPS_APIKEY,
+					language: "en",
+				}}
+				placeholder="Where from ?"
+				nearbyPlacesAPI="GooglePlacesSearch"
+				debounce={400}
+			></GooglePlacesAutocomplete>
 			<NavOptions></NavOptions>
 		</SafeAreaView>
 	);
